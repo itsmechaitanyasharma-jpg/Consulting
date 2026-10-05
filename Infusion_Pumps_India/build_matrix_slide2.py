@@ -51,7 +51,7 @@ P = [
   "Standard", "Official India website", TER_BRO,
   "Brochure p.2 (Smart vs Standard panel) and p.4 (spec table). India product page: " + TER_PAGE,
   "Smart", "RECLASSIFY Smart -> Standard (no drug library, no IT function)",
-  "Shown only in the brochure hosted on terumoindia.com (brochure dated Aug-2018). The India web page text names only the Smart pumps - confirm TE-SS730 is still actively sold in India."),
+  "Shown in the brochure hosted on terumoindia.com (Aug-2018 edition); the India web page text names only the Smart pumps. Included on the slide per project team decision."),
  ("Terumo", "TERUFUSION Syringe Pump Type SS3 TE-SS830", "Syringe",
   "Brochure p.4 'Smart Pumps [TE-LM830 / TE-SS830] only' - 'Drug library function minimizes human error'; spec: 'Library mode (TE-SS830 only)'. India page: 'integrated drug library'.",
   "Brochure spec table: 'External communication function (wireless LAN)' - TE-SS830 only; 'Links with Hospital Information Systems (HIS)'. India page: 'remote monitoring', Pump Monitoring System (PMS) software.",
@@ -64,7 +64,7 @@ P = [
   "Standard", "Official India website", TER_BRO,
   "Brochure p.2 and p.4. India product page: " + TER_PAGE,
   "Smart", "RECLASSIFY Smart -> Standard (no drug library, no IT function)",
-  "Same caveat as TE-SS730: confirm it is still actively sold in India."),
+  "Same as TE-SS730: India-hosted brochure; included per project team decision."),
  ("Terumo", "TERUFUSION Infusion Pump Type LM3 TE-LM830", "Volumetric",
   "Brochure: 'Library mode (TE-LM830 only)'; Drug Library Manager TE-SW800B 'TE-LM830 only'. India page: 'integrated drug library'.",
   "Brochure spec table: 'External communication function (wireless LAN)' - TE-LM830 only. India page: remote monitoring via PMS software.",
@@ -172,11 +172,11 @@ COLS = {("Syringe", "Standard"): 4, ("Syringe", "Smart"): 5, ("Syringe", "Smart*
         ("Volumetric", "Standard"): 7, ("Volumetric", "Smart"): 8, ("Volumetric", "Smart**"): 8, ("Volumetric", "Connected"): 9}
 companies = [
  ("Terumo", "Japan", "JPY 1,131.9B FY25 revenue (Apr-25 to Mar-26) (~USD 7.15B*)\nof which Medical Care Solutions (incl. infusion & syringe pumps): JPY 216.1B\nSource: Terumo FY2025 Financial Results",
-  "- TE-SS730 & TE-LM730: Smart -> Standard (brochure: 'Standard pumps without IT functions'; library mode is 830-only)\n- TE-SS830 & TE-LM830 Connected confirmed (built-in wireless LAN)\n- 730 models appear only in the India-hosted brochure: confirm they are still sold"),
+  "- TE-SS730 & TE-LM730: Smart -> Standard (brochure: 'Standard pumps without IT functions'; library mode is 830-only)\n- TE-SS830 & TE-LM830 Connected confirmed (built-in wireless LAN)"),
  ("Mindray", "China", "CNY 33.28B FY25 revenue (~USD 4.96B*)\nof which Life Information & Support (incl. infusion pumps): CNY 9.84B\nSource: Mindray 2025 Annual Report (SZSE filing)",
   "- 5 Series: Smart -> Smart** (wireless module optional; DS5 dock)\n- e Series (eSP/eVP): Smart -> Connected (DERS + wired/wireless CMS monitoring)\n- 1/3 Series Standard and u Series Connected confirmed\n- 3 Series has a 200-drug name list without dose limits: kept Standard (decision needed)"),
  ("ICU Medical", "United States", "USD 2.23B FY25 revenue\nof which Infusion Systems (global): USD 684.2M\nSource: ICU Medical Q4/FY2025 results release",
-  "- No change in classification (Graseby 2000/2100 & 1200 Standard; Medfusion 4000 Connected; all distributor-only, peach)\n- Flag: ICU's FY2025 10-K does not mention Graseby, and graseby.com is now run by Lianying Graseby Medical (China): confirm who supplies Graseby in India"),
+  "- No change in classification (Graseby 2000/2100 & 1200 Standard; Medfusion 4000 Connected; all distributor-only, peach)"),
 ]
 r = 6
 for name, hq, rev, changes in companies:
@@ -343,8 +343,8 @@ notes = [
  "Source priority: (1) company India website, including brochures hosted on it; (2) Indian distributor websites incl. IndiaMart and IndiaMart-hosted brochures (imimg.com), marked peach; (3) global company pages/data sheets, used only as backup for features and never as proof of India availability.",
  "Classification rules (same as slide 1): optional wireless module / docking station / separate WiFi variant = Smart**. RS232 / nurse-call ports are NOT counted as connectivity. Body-weight dose calculation (Graseby 2100) is NOT a drug library.",
  "Judgement call (Mindray 3 Series): data sheets show a drug-NAME library (up to 200 drugs) with no dose limits. Kept Standard, as in the sample; it moves to Smart if any drug library counts.",
- "Terumo TE-SS730 / TE-LM730 appear only in the India-hosted brochure (2018 edition); the India web page text mentions only the Smart (830) pumps.",
- "Graseby ownership flag: ICU Medical's FY2025 10-K describes Medfusion 4000 but does not mention Graseby, and graseby.com is now operated by Lianying Graseby Medical (Zhejiang, China). Indian listings still say 'Smiths Medical Graseby'. Confirm Graseby's current owner / India supplier before keeping it under ICU Medical.",
+ "Terumo TE-SS730 / TE-LM730 appear in the India-hosted brochure (2018 edition) but not in the India web page text; included per project team decision.",
+ "Graseby: kept under ICU Medical (project team confirmed ICU Medical / Smiths Medical is the manufacturer supplying India). Note for reference: graseby.com is now operated by Lianying Graseby Medical (China), and ICU's FY2025 10-K does not name Graseby.",
  "IndiaMart blocks automated access from this environment (HTTP 429); all four IndiaMart listings (Medfusion 4000, Graseby 2000, 2100, 1200) were verified manually by the project team (screenshots in evidence/). smiths-medical.com (incl. /en-in) was unreachable.",
  "Revenue: official sources only on the slide (Terumo FY results, Mindray SZSE annual report, ICU results release). USD uses ECB reference rates of 5-Oct-2026 (latest), crossed via EUR: USD/JPY 158.23, USD/CNY 6.705 - editable inputs on the Revenue tab. No company reports pump-only revenue; segment figures are the closest proxies.",
 ]
