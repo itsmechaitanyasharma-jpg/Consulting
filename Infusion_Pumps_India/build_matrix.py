@@ -128,10 +128,10 @@ P = [
  ("Fresenius Kabi", "Agilia SP TIVA", "Syringe",
   "Yes - Arraymed: 'Up to 19 configurable drug libraries'.",
   "Optional - India page: 'Agilia Connect ... cyber secure communication'; Arraymed battery spec '13 Hours (Standard) / 9 Hours (WiFi)' = WiFi is a variant.",
-  "Smart**", "Official India website",
+  "Excluded - specialty TCI/anaesthesia pump", "Official India website",
   "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-tiva",
   "https://arraymed.co.in/product/fresenius-kabi-agilia-tiva-pump/",
-  "Not shown", "ADD to Syringe-Smart**", "Anaesthesia (TCI) niche pump."),
+  "Not shown", "EXCLUDED from market scope (specialty TCI / anaesthesia pump, per project team)", "Would be Smart** on features (drug library; WiFi variant), but sits in the specialty anaesthesia segment, not general infusion."),
  ("Fresenius Kabi", "Infusia VP7s (VP7sED3)", "Volumetric",
   "Yes - 'Volumetric Infusion Pump with drug library - 17 therapy categories ... 1030 different drugs'.",
   "None stated.", "Smart", "Official India website",
@@ -189,13 +189,13 @@ companies = [
  ("B. Braun", "Germany", "EUR 9.40B FY25 group sales (~USD 10.53B*)\nof which Hospital Care div. (incl. infusion therapy): EUR 5.09B\nSource: B. Braun Annual Report 2025",
   "- Standard columns were blank: add Perfusor compact, compact S, Infusomat fmS, Infusomat P\n- compactplus & Space pumps -> Smart** (connectivity is optional)\n- 'Perfusor Space Plus' removed: not offered in India (catalogue + distributors)\n- 'Infusomat Space' -> India lists Infusomat Space P\n- 'Infusomat Space Place' typo -> Spaceplus Infusomat\n- Add Infusomat compactplus P"),
  ("Fresenius Kabi", "Germany", "EUR 8.61B FY25 Kabi revenue (~USD 9.65B*)\nof which MedTech (incl. infusion pumps): EUR 1.61B\nSource: Fresenius Annual Report 2025",
-  "- Add Agilia SP (Smart), Agilia SP MC & SP TIVA (Smart**)\n- Agilia VP (distributor only) -> Volumetric Smart, peach\n- 'Agilia VP MC WiFi' -> India listing (IndiaMart) is base Agilia VP MC -> Volumetric Smart** (peach); Volumetric Connected now blank\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
+  "- Add Agilia SP (Smart), Agilia SP MC (Smart**)\n- Agilia SP TIVA excluded: specialty TCI/anaesthesia pump\n- Agilia VP (distributor only) -> Volumetric Smart, peach\n- 'Agilia VP MC WiFi' -> India listing (IndiaMart) is base Agilia VP MC -> Volumetric Smart** (peach); Volumetric Connected now blank\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
 ]
 r = 6
 for name, hq, rev, changes in companies:
     buckets = {}
     for p in P:
-        if p[0] != name or p[6] == "Not offered in India": continue
+        if p[0] != name or p[6] == "Not offered in India" or p[5].startswith("Excluded"): continue
         cls = p[5].replace(" (global only)", "")
         col = COLS[(p[2], cls)]
         label = p[1] + ("**" if cls == "Smart**" else "") + (" (pending India confirmation)" if p[6] == "Not verified in India" else "")
@@ -325,11 +325,11 @@ urls = [
  ("Fresenius Kabi", "Infusia VP7s", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/infusia-range/infusia-vp7sed3", "Official India website", "KEEP", ""),
  ("Fresenius Kabi", "Agilia SP", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp", "Official India website", "ADDED", ""),
  ("Fresenius Kabi", "Agilia SP MC / SP MC WiFi", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-mc", "Official India website", "KEEP", "Covers both SP MC and SP MC WiFi"),
- ("Fresenius Kabi", "Agilia SP TIVA", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-tiva", "Official India website", "ADDED", ""),
+ ("Fresenius Kabi", "Agilia SP TIVA", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-tiva", "Official India website", "EXCLUDED", "Specialty TCI/anaesthesia pump - out of market scope; keep for reference only"),
  ("Fresenius Kabi", "Agilia VP (distributor)", "https://arraymed.co.in/product/fresenius-kabi-agilia-vp/", "Third-party (India distributor)", "KEEP (peach)", "Ignore the page's brochure button - wrong PDF"),
  ("Fresenius Kabi", "Agilia SP (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-sp/", "Third-party (India distributor)", "ADDED (peach)", ""),
  ("Fresenius Kabi", "Agilia SP MC (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-spmc/", "Third-party (India distributor)", "ADDED (peach)", ""),
- ("Fresenius Kabi", "Agilia SP TIVA (WiFi variant evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-tiva-pump/", "Third-party (India distributor)", "ADDED (peach)", ""),
+ ("Fresenius Kabi", "Agilia SP TIVA (WiFi variant evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-tiva-pump/", "Third-party (India distributor)", "EXCLUDED", "Specialty TCI/anaesthesia pump - out of market scope"),
  ("Fresenius Kabi", "Agilia SP MC / SP MC WiFi data sheet", "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-sp/IFT265%20Agilia%20SP%20Connect%20Datasheet.pdf.coredownload.inline.pdf", "Company brochure (global)", "ADDED (backup)", "'Wireless LAN (For Agilia SP MC WiFi only)'; 19 drug libraries"),
  ("Fresenius Kabi", "Segment reporting FY2025 (revenue)", "https://report.fresenius.com/2025/annual-report/financial-statements/segment-reporting.html", "Company annual report", "KEEP", "Kabi revenue EUR 8,612mn (duplicate in source list removed)"),
  ("Fresenius Kabi", "Annual Report 2025 PDF (p.5, p.117)", "https://www.fresenius.com/sites/default/files/2026-03/fresenius_annual_report_2025_0.pdf", "Company annual report", "KEEP", "p.117 for MedTech EUR 1,610mn"),
@@ -355,7 +355,7 @@ ws4.freeze_panes = "A2"; ws4.auto_filter.ref = f"A1:F{len(urls)+1}"
 # ---------------------------------------------------------------- Sheet 5: method & caveats
 ws5 = wb.create_sheet("Method & Caveats")
 notes = [
- "Scope: India market, B. Braun and Fresenius Kabi; syringe and volumetric (large-volume) pumps. BD and Baxter skipped per instruction. Checked October 2026.",
+ "Scope: India market, B. Braun and Fresenius Kabi; general-purpose syringe and volumetric (large-volume) pumps. Specialty anaesthesia/TCI pumps (e.g., Agilia SP TIVA) excluded. BD and Baxter skipped per instruction. Checked October 2026.",
  "Source priority: (1) company India website, including its catalogue tabs and linked brochures; (2) Indian distributor websites incl. IndiaMart, marked peach; (3) global company pages/data sheets, used only as backup for features and never as proof of India availability.",
  "Visual check: every India page was opened in a real browser and screenshotted (see evidence/ folder). B. Braun catalogue details sit under 'Read more' / 'Overview & Texts' - click there to see drug-library text.",
  "Classification rules applied: an add-on connectivity module (e.g., Data module compactplus) or a separate WiFi variant (e.g., Agilia SP MC vs SP MC WiFi) = 'connectivity optional' = Smart**. A basic RS232 / nurse-call port is NOT counted as connectivity.",
