@@ -9,7 +9,7 @@ F = "Arial"
 NAVY = PatternFill("solid", fgColor="0B1F6B")
 MID = PatternFill("solid", fgColor="3D5DA8")
 BLUE = PatternFill("solid", fgColor="DEEBF7")      # listed on official India website
-YELLOW = PatternFill("solid", fgColor="FFF59D")    # third-party (distributor) only
+PEACH = PatternFill("solid", fgColor="FCE4D6")     # third-party (distributor) only
 GREY = PatternFill("solid", fgColor="E0E0E0")      # not disclosed on Indian websites
 RED = PatternFill("solid", fgColor="F8CBCB")       # not verified in India
 INPUT = PatternFill("solid", fgColor="FFFF00")
@@ -17,7 +17,7 @@ thin = Side(style="thin", color="A6A6A6")
 BOX = Border(left=thin, right=thin, top=thin, bottom=thin)
 WRAP = Alignment(wrap_text=True, vertical="top")
 CENTER = Alignment(wrap_text=True, vertical="center", horizontal="center")
-SRC_FILL = {"Official India website": BLUE, "Third-party (India distributor)": YELLOW,
+SRC_FILL = {"Official India website": BLUE, "Third-party (India distributor)": PEACH, "Not offered in India": GREY,
             "Not verified in India": RED}
 
 # ---------------------------------------------------------------- product evidence
@@ -54,10 +54,10 @@ P = [
  ("B. Braun", "Spaceplus Perfusor", "Syringe",
   "Yes (global) - Spaceplus tech sheet p.2: '10,000 drugs including all parameters in drug library'.",
   "Integrated WiFi (global) - tech sheet p.1 battery time 'with WiFi activated'.",
-  "Connected (global only)", "Not verified in India",
+  "Excluded - not offered in India", "Not offered in India",
   "https://catalogs.bbraun.co.in/en-IN/p/PRID00011858 (returns 'No results')",
   "India Spaceplus family lists only Spaceplus Infusomat: https://catalogs.bbraun.co.in/en-IN/c/PRODUCTS0000000574/spaceplus-system | Global: https://catalogs.bbraun.com/en-01/p/PRID00011858/spaceplus-perfusor",
-  "Connected - 'Perfusor Space Plus' (official India website)", "REMOVE from India matrix (not listed on India catalogue) or footnote as global-only",
+  "Connected - 'Perfusor Space Plus' (official India website)", "REMOVED - not on B. Braun India catalogue; not found on Indian distributor sites (confirmed by project team, manual check)",
   "The shared Spaceplus technical-data PDF attached to the India Spaceplus Infusomat page covers both pumps - weak signal only, not a product listing."),
  ("B. Braun", "Infusomat fmS", "Volumetric",
   "No - not mentioned (dose-rate calculation only).", "None stated.", "Standard", "Official India website",
@@ -143,14 +143,14 @@ P = [
   "None stated.", "Smart", "Third-party (India distributor)",
   "https://arraymed.co.in/product/fresenius-kabi-agilia-vp/",
   "FK India Agilia range lists only SP, SP MC, SP TIVA: https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range",
-  "Not shown", "ADD to Volumetric-Smart (yellow - distributor only)", "Arraymed 'Download Brochure' button links to an unrelated Nihon Kohden defibrillator PDF - do not cite it."),
+  "Not shown", "ADD to Volumetric-Smart (peach - distributor only)", "Arraymed 'Download Brochure' button links to an unrelated Nihon Kohden defibrillator PDF - do not cite it."),
  ("Fresenius Kabi", "Agilia VP MC WiFi", "Volumetric",
   "Yes (global) - FK data sheet: 'Up to 19 embedded drug libraries'.",
   "Integrated WiFi on WiFi variant (global) - 'Wireless LAN (For Agilia VP MC WiFi only)'.",
   "Connected (global only)", "Not verified in India",
-  "None found - not on FK India site or Arraymed",
+  "Pending - not on FK India site or Arraymed; IndiaMart search for team check: https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi",
   "Global data sheet: https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf",
-  "Connected (Indian distributors' websites)", "UNVERIFIED - provide the IndiaMart/distributor link, or remove",
+  "Connected (Indian distributors' websites)", "PENDING team confirmation of IndiaMart/distributor listing; remove if none",
   "IndiaMart blocks automated access (HTTP 429), so IndiaMart could not be checked. Manual check needed."),
 ]
 
@@ -163,8 +163,8 @@ def hdr(ws, row, values, fill=NAVY):
         cell.fill = fill; cell.alignment = CENTER; cell.border = BOX
 
 def legend(ws, row, col):
-    items = [(BLUE, "Listed on official India website"), (YELLOW, "Listed on Indian distributor (third-party) website only"),
-             (GREY, "Not disclosed on Indian websites"), (RED, "Not verified in India - needs manual check / remove")]
+    items = [(BLUE, "Listed on official India website"), (PEACH, "Listed on Indian distributor (third-party) website only"),
+             (GREY, "Not disclosed on Indian websites"), (RED, "Pending confirmation of an Indian distributor listing")]
     for i, (fill, txt) in enumerate(items):
         ws.cell(row=row + i, column=col).fill = fill
         ws.cell(row=row + i, column=col).border = BOX
@@ -185,19 +185,19 @@ ws.merge_cells("J4:J5")
 COLS = {("Syringe", "Standard"): 4, ("Syringe", "Smart"): 5, ("Syringe", "Smart**"): 5, ("Syringe", "Connected"): 6,
         ("Volumetric", "Standard"): 7, ("Volumetric", "Smart"): 8, ("Volumetric", "Smart**"): 8, ("Volumetric", "Connected"): 9}
 companies = [
- ("B. Braun", "Germany", "EUR 9.40B FY25 group sales (~USD 10.79B*)\nHospital Care div.: EUR 5.09B\nIndia entity FY25: INR 500-750 Cr\n(see Revenue tab)",
-  "- Standard columns were blank: add Perfusor compact, compact S, Infusomat fmS, Infusomat P\n- compactplus & Space pumps -> Smart** (connectivity is optional)\n- 'Perfusor Space Plus' NOT on India catalogue -> remove/footnote\n- 'Infusomat Space' -> India lists Infusomat Space P\n- 'Infusomat Space Place' typo -> Spaceplus Infusomat\n- Add Infusomat compactplus P"),
- ("Fresenius Kabi", "Germany", "EUR 8.61B FY25 Kabi revenue (~USD 9.89B*)\nMedTech: EUR 1.61B\nIndia entity FY25: INR 750-1,000 Cr\n(see Revenue tab)",
-  "- Add Agilia SP (Smart), Agilia SP MC & SP TIVA (Smart**)\n- Agilia VP (distributor only) -> Volumetric Smart, yellow\n- Agilia VP MC WiFi: no India listing found -> verify or remove\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
+ ("B. Braun", "Germany", "EUR 9.40B FY25 group sales (~USD 10.53B*)\nof which Hospital Care div. (incl. infusion therapy): EUR 5.09B\nSource: B. Braun Annual Report 2025",
+  "- Standard columns were blank: add Perfusor compact, compact S, Infusomat fmS, Infusomat P\n- compactplus & Space pumps -> Smart** (connectivity is optional)\n- 'Perfusor Space Plus' removed: not offered in India (catalogue + distributors)\n- 'Infusomat Space' -> India lists Infusomat Space P\n- 'Infusomat Space Place' typo -> Spaceplus Infusomat\n- Add Infusomat compactplus P"),
+ ("Fresenius Kabi", "Germany", "EUR 8.61B FY25 Kabi revenue (~USD 9.65B*)\nof which MedTech (incl. infusion pumps): EUR 1.61B\nSource: Fresenius Annual Report 2025",
+  "- Add Agilia SP (Smart), Agilia SP MC & SP TIVA (Smart**)\n- Agilia VP (distributor only) -> Volumetric Smart, peach\n- Agilia VP MC WiFi: pending distributor confirmation (keep only if an Indian listing is found)\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
 ]
 r = 6
 for name, hq, rev, changes in companies:
     buckets = {}
     for p in P:
-        if p[0] != name: continue
+        if p[0] != name or p[6] == "Not offered in India": continue
         cls = p[5].replace(" (global only)", "")
         col = COLS[(p[2], cls)]
-        label = p[1] + ("**" if cls == "Smart**" else "") + (" (not verified in India)" if p[6] == "Not verified in India" else "")
+        label = p[1] + ("**" if cls == "Smart**" else "") + (" (pending India confirmation)" if p[6] == "Not verified in India" else "")
         buckets.setdefault(col, []).append((label, SRC_FILL[p[6]]))
     n = max(len(v) for v in buckets.values())
     for c in range(1, 11):
@@ -222,7 +222,7 @@ for name, hq, rev, changes in companies:
     for i in range(n): ws.row_dimensions[r + i].height = 30
     r += n
 ws.cell(row=r + 1, column=1, value="** Smart** = drug library + connectivity optional (separately sold data module / WiFi variant).  "
-        "* USD at EUR/USD 1.148, the rate implied by the sample slide - confirm FX basis (see Revenue tab).").font = Font(name=F, size=8, italic=True)
+        "* USD converted at ECB EUR/USD reference rate 1.1204 (5-Oct-2026), latest available; sample slide had used ~1.148.").font = Font(name=F, size=8, italic=True)
 ws.cell(row=r + 2, column=1, value="BD and Baxter excluded from this pass per instruction. Product-level evidence and URLs: see 'Product Evidence' tab.").font = Font(name=F, size=8, italic=True)
 for c, w in zip("ABCDEFGHIJKL", [14, 9, 30, 18, 22, 22, 18, 26, 24, 55, 4, 48]):
     ws.column_dimensions[c].width = w
@@ -259,29 +259,29 @@ ws2.freeze_panes = "C2"; ws2.auto_filter.ref = f"A1:M{len(P)+1}"
 # ---------------------------------------------------------------- Sheet 3: revenue
 ws3 = wb.create_sheet("Revenue")
 ws3["A1"] = "Revenue cross-check (FY2025)"; ws3["A1"].font = Font(name=F, bold=True, size=12)
-ws3["A2"] = "EUR/USD rate (input)"; ws3["B2"] = 1.148; ws3["B2"].font = Font(name=F, color="0000FF"); ws3["B2"].fill = INPUT
-ws3["C2"] = "Assumption: rate implied by sample slide (USD 10.79B / EUR 9.396B = USD 9.89B / EUR 8.612B = 1.148). Confirm whether average or closing rate is intended and replace."
+ws3["A2"] = "EUR/USD rate (input)"; ws3["B2"] = 1.1204; ws3["B2"].font = Font(name=F, color="0000FF"); ws3["B2"].fill = INPUT
+ws3["C2"] = "ECB euro reference rate, latest available (5-Oct-2026): https://data.ecb.europa.eu/data/datasets/EXR/EXR.D.USD.EUR.SP00.A  |  For reference: 2025 annual average 1.1300; the sample slide implied ~1.148."
 for c in ("A2", "C2"): ws3[c].font = Font(name=F, size=9, italic=(c == "C2"))
 hdr(ws3, 4, ["Company", "Metric", "Period", "Value (EUR mn)", "Value (USD bn) - formula", "Value (INR, as published)",
              "Sample slide", "Check", "Source URL", "Page / location", "Comment"])
 rev = [
- ("B. Braun", "Group sales", "FY2025 (Dec-25)", 9396, None, "~$10.79B (FY25, Group Sales)", "Matches (EUR 9,396mn x 1.148)",
+ ("B. Braun", "Group sales", "FY2025 (Dec-25)", 9396, None, "~$10.79B (FY25, Group Sales)", "EUR figure matches; sample USD used ~1.148 -> now USD 10.53B at latest ECB rate",
   "https://www.bbraun.com/en/about-us/company/facts-and-figures/annual-report.html", "Key figures table; Annual Report PDF p.8",
   "PDF: https://www.bbraun.com/content/dam/b-braun/master/website-6/en/04_about-us/0401_company/facts-and-figures/2025_B_Braun_Annual_Report.pdf"),
  ("B. Braun", "Hospital Care division sales (incl. infusion therapy)", "FY2025", 5090.8, None, "-", "Closest infusion proxy",
   "https://www.bbraun.com/content/dam/b-braun/master/website-6/en/04_about-us/0401_company/facts-and-figures/2025_B_Braun_Annual_Report.pdf",
   "PDF p.43 (section 4.9); p.8 'Hospital Care 5,091 ... infusion therapy, nutrition therapy and pain therapy'",
   "Pump-only revenue not disclosed. AR p.41 notes protectionist procurement in China and India affected foreign medical device sales."),
- ("B. Braun", "B. Braun Medical (India) Pvt Ltd - revenue", "FY2025 (Mar-25)", None, None, "INR 500-750 Cr", "Not on sample",
+ ("B. Braun", "B. Braun Medical (India) Pvt Ltd - revenue", "FY2025 (Mar-25)", None, None, "INR 500-750 Cr", "UNOFFICIAL - not used on slide",
   "https://www.tofler.in/b-braun-medical-india-private-limited/company/U33112MH1984PTC214514", "Key metrics (range; exact figure paywalled)",
   "Tofler: revenue growth 13.34%. Tracxn range INR 500-1,000 Cr: https://tracxn.com/d/legal-entities/india/b.braun-medical-india-private-limited/__bN1KxXSC4dkyGIflutZRBCshiSEXqK9hrOWP4hHQsdA"),
- ("Fresenius Kabi", "Fresenius Kabi segment revenue", "FY2025 (Dec-25)", 8612, None, "~$9.89B (FY25)", "Matches (EUR 8,612mn x 1.148)",
+ ("Fresenius Kabi", "Fresenius Kabi segment revenue", "FY2025 (Dec-25)", 8612, None, "~$9.89B (FY25)", "EUR figure matches; sample USD used ~1.148 -> now USD 9.65B at latest ECB rate",
   "https://report.fresenius.com/2025/annual-report/financial-statements/segment-reporting.html", "Segment table; Annual Report PDF p.5 and p.117",
   "PDF: https://www.fresenius.com/sites/default/files/2026-03/fresenius_annual_report_2025_0.pdf"),
  ("Fresenius Kabi", "MedTech business revenue (incl. infusion pumps)", "FY2025", 1610, None, "-", "Closest infusion proxy",
   "https://www.fresenius.com/sites/default/files/2026-03/fresenius_annual_report_2025_0.pdf", "PDF p.117 (printed p.116): 'Revenue in the MedTech business increased ... to EUR 1,610 million'",
   "Also includes transfusion, disposables and Ivenix (US). Pump-only revenue not disclosed."),
- ("Fresenius Kabi", "Fresenius Kabi India Pvt Ltd - revenue", "FY2025 (Mar-25)", None, None, "INR 750-1,000 Cr", "Not on sample",
+ ("Fresenius Kabi", "Fresenius Kabi India Pvt Ltd - revenue", "FY2025 (Mar-25)", None, None, "INR 750-1,000 Cr", "UNOFFICIAL - not used on slide",
   "https://www.tofler.in/fresenius-kabi-india-private-limited/company/U24231PN1995PTC014017", "Key metrics (range; exact figure paywalled)",
   "Tofler revenue growth 9.83%. Entity covers pumps, disposables, nutrition, oncology etc. (Fresenius Kabi Oncology Ltd is a separate entity.)"),
 ]
@@ -325,10 +325,10 @@ urls = [
  ("Fresenius Kabi", "Agilia SP", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp", "Official India website", "ADDED", ""),
  ("Fresenius Kabi", "Agilia SP MC / SP MC WiFi", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-mc", "Official India website", "KEEP", "Covers both SP MC and SP MC WiFi"),
  ("Fresenius Kabi", "Agilia SP TIVA", "https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range/agilia-sp-tiva", "Official India website", "ADDED", ""),
- ("Fresenius Kabi", "Agilia VP (distributor)", "https://arraymed.co.in/product/fresenius-kabi-agilia-vp/", "Third-party (India distributor)", "KEEP (yellow)", "Ignore the page's brochure button - wrong PDF"),
- ("Fresenius Kabi", "Agilia SP (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-sp/", "Third-party (India distributor)", "ADDED (yellow)", ""),
- ("Fresenius Kabi", "Agilia SP MC (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-spmc/", "Third-party (India distributor)", "ADDED (yellow)", ""),
- ("Fresenius Kabi", "Agilia SP TIVA (WiFi variant evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-tiva-pump/", "Third-party (India distributor)", "ADDED (yellow)", ""),
+ ("Fresenius Kabi", "Agilia VP (distributor)", "https://arraymed.co.in/product/fresenius-kabi-agilia-vp/", "Third-party (India distributor)", "KEEP (peach)", "Ignore the page's brochure button - wrong PDF"),
+ ("Fresenius Kabi", "Agilia SP (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-sp/", "Third-party (India distributor)", "ADDED (peach)", ""),
+ ("Fresenius Kabi", "Agilia SP MC (drug-library evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-spmc/", "Third-party (India distributor)", "ADDED (peach)", ""),
+ ("Fresenius Kabi", "Agilia SP TIVA (WiFi variant evidence)", "https://arraymed.co.in/product/fresenius-kabi-agilia-tiva-pump/", "Third-party (India distributor)", "ADDED (peach)", ""),
  ("Fresenius Kabi", "Agilia SP MC / SP MC WiFi data sheet", "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-sp/IFT265%20Agilia%20SP%20Connect%20Datasheet.pdf.coredownload.inline.pdf", "Company brochure (global)", "ADDED (backup)", "'Wireless LAN (For Agilia SP MC WiFi only)'; 19 drug libraries"),
  ("Fresenius Kabi", "Segment reporting FY2025 (revenue)", "https://report.fresenius.com/2025/annual-report/financial-statements/segment-reporting.html", "Company annual report", "KEEP", "Kabi revenue EUR 8,612mn (duplicate in source list removed)"),
  ("Fresenius Kabi", "Annual Report 2025 PDF (p.5, p.117)", "https://www.fresenius.com/sites/default/files/2026-03/fresenius_annual_report_2025_0.pdf", "Company annual report", "KEEP", "p.117 for MedTech EUR 1,610mn"),
@@ -342,7 +342,7 @@ for i, u in enumerate(urls, 2):
         cell = ws4.cell(row=i, column=c, value=v); cell.font = Font(name=F, size=9); cell.alignment = WRAP; cell.border = BOX
     if u[2].startswith("http"):
         ws4.cell(row=i, column=3).hyperlink = u[2]; ws4.cell(row=i, column=3).font = Font(name=F, size=9, color="0563C1", underline="single")
-    if "Third-party (India" in u[3]: ws4.cell(row=i, column=4).fill = YELLOW
+    if "Third-party (India" in u[3]: ws4.cell(row=i, column=4).fill = PEACH
     elif "Official India" in u[3]: ws4.cell(row=i, column=4).fill = BLUE
     if u[4] == "DROP": ws4.cell(row=i, column=5).fill = RED
 for c, w in enumerate([14, 40, 70, 26, 18, 55], 1):
@@ -353,13 +353,13 @@ ws4.freeze_panes = "A2"; ws4.auto_filter.ref = f"A1:F{len(urls)+1}"
 ws5 = wb.create_sheet("Method & Caveats")
 notes = [
  "Scope: India market, B. Braun and Fresenius Kabi; syringe and volumetric (large-volume) pumps. BD and Baxter skipped per instruction. Checked October 2026.",
- "Source priority: (1) company India website, including its catalogue tabs and linked brochures; (2) Indian distributor websites, marked yellow; (3) global company pages/data sheets, used only as backup for features and never as proof of India availability.",
+ "Source priority: (1) company India website, including its catalogue tabs and linked brochures; (2) Indian distributor websites incl. IndiaMart, marked peach; (3) global company pages/data sheets, used only as backup for features and never as proof of India availability.",
  "Visual check: every India page was opened in a real browser and screenshotted (see evidence/ folder). B. Braun catalogue details sit under 'Read more' / 'Overview & Texts' - click there to see drug-library text.",
  "Classification rules applied: an add-on connectivity module (e.g., Data module compactplus) or a separate WiFi variant (e.g., Agilia SP MC vs SP MC WiFi) = 'connectivity optional' = Smart**. A basic RS232 / nurse-call port is NOT counted as connectivity.",
  "Where a product page is silent on the drug library (e.g., FK Agilia SP, SP TIVA), distributor text was used and the evidence column says so.",
- "LIMITATION: IndiaMart blocks automated access from this environment (HTTP 429), so the IndiaMart links could not be checked. Agilia VP MC WiFi remains unverified for India.",
+ "LIMITATION: IndiaMart blocks automated access from this environment (HTTP 429). IndiaMart checks were done manually by the project team; Agilia VP MC WiFi is pending that check.",
  "LIMITATION: Revenue for the India entities is shown only as ranges (Tofler/Tracxn); exact MCA figures are paywalled. Neither group reports infusion-pump-only revenue; Hospital Care (B. Braun) and MedTech (Fresenius Kabi) are the closest disclosed proxies.",
- "Revenue in USD uses EUR/USD 1.148 (implied by sample) - an editable input on the Revenue tab.",
+ "Revenue in USD uses the latest ECB EUR/USD reference rate 1.1204 (5-Oct-2026) - an editable input on the Revenue tab. Slide shows official (annual report) figures only; India-entity ranges come from aggregators (Tofler/Tracxn) and are kept off the slide. Official India figures would need MCA filings (paid access).",
 ]
 ws5["A1"] = "Method, assumptions and caveats"; ws5["A1"].font = Font(name=F, bold=True, size=12)
 for i, n in enumerate(notes, 3):
