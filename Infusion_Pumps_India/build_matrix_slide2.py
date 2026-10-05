@@ -122,21 +122,22 @@ P = [
   "None. Distributor text: rate / VTBI programming, '4-step programming sequence'.",
   "None.", "Standard", "Third-party (India distributor)", IM_G2000,
   "Honmed (Graseby 2000 range text): " + HON_G2100, "Standard (peach)", "Confirmed",
-  "IndiaMart is blocked for automated access - project team to confirm the listing opens."),
+  "IndiaMart listing verified by project team (Oct-2026): seller Nature's Global Service, New Delhi, Rs 30,000; image shows a Graseby 2000."),
  ("ICU Medical", "Graseby 2100", "Syringe",
   "None. Honmed: '2100 ... also features Bodyweight Programming' (dose calculation, not a drug library).",
-  "None.", "Standard", "Third-party (India distributor)", HON_G2100, "IndiaMart: " + IM_G2100, "Standard (peach)", "Confirmed", ""),
+  "None.", "Standard", "Third-party (India distributor)", HON_G2100, "IndiaMart: " + IM_G2100, "Standard (peach)", "Confirmed",
+  "IndiaMart listing verified by project team: seller Apex Medical India (Mark.Inc), Lucknow, Rs 30,000; pump screen shows WEIGHT / DRUG MASS fields (body-weight mode)."),
  ("ICU Medical", "Medfusion 4000", "Syringe",
   "ICU page: 'Default into the drug library', 'Quick Library feature'.",
   "ICU page: 'Wireless connectivity with the PharmGuard Server enables updates to the drug library ... EMR integration'. Product name: 'Medfusion 4000 Wireless Syringe Infusion Pump'.",
   "Connected", "Third-party (India distributor)", IM_MF, "Features from ICU global page: " + ICU_MF, "Connected (peach)", "Confirmed",
-  "Only India evidence is the IndiaMart listing (blocked here) - team to confirm. ICU Medical has no India product website."),
+  "IndiaMart listing verified by project team: seller Apex Medical India (Mark.Inc), Lucknow, Rs 1,80,000; product photo shows the 'PharmGuard Medication Safety' start screen (drug library). ICU Medical has no India product website."),
  ("ICU Medical", "Graseby 1200", "Volumetric",
   "None in India brochure (Smiths Medical, ref IN193908GB, lists Indian IV-set brands Romsons, Polymed).",
   "India brochure: 'Standard RS232 interface' only (not counted).",
   "Standard", "Third-party (India distributor)", MB_G1200,
   "IndiaMart: " + IM_G1200 + " | India brochure (Hospimax): " + G1200_BRO, "Standard (peach)", "Confirmed",
-  "Some non-Indian distributors list a newer 'Graseby 1200' with a 2,000-drug library - not seen on Indian sites."),
+  "Medikabazaar (Rs 48,825) is primary - its photo shows the Graseby 1200 volumetric pump. IndiaMart listing (team-verified: Horizon Medical Technologies, New Delhi, Rs 55,000) is titled Graseby 1200 but its photo shows a Graseby 2000 SYRINGE pump - use as supporting only. Some non-Indian distributors list a newer 'Graseby 1200' with a 2,000-drug library - not seen on Indian sites."),
 ]
 
 wb = Workbook()
@@ -227,9 +228,9 @@ shots = {"Terumo": ter_shots,
          "BeneFusion 5": "Mindray_IN_BeneFusion_5_Series.jpg",
          "BeneFusion e": "Mindray_IN_BeneFusion_e_Series.jpg",
          "BeneFusion u": "Mindray_IN_BeneFusion_u_Series.jpg; Mindray_uSeries_brochure_IndiaMart_p2.jpg",
-         "Graseby 2000": "Honmed_Graseby_2100.jpg (IndiaMart: team check)", "Graseby 2100": "Honmed_Graseby_2100.jpg",
-         "Medfusion 4000": "ICU_Global_Medfusion_4000.jpg (IndiaMart: team check)",
-         "Graseby 1200": "Medikabazaar_Graseby_1200.jpg; Graseby_1200_India_brochure_Hospimax_p2.jpg; ..._p3.jpg"}
+         "Graseby 2000": "IndiaMart_Graseby_2000_team_check.jpg; Honmed_Graseby_2100.jpg", "Graseby 2100": "Honmed_Graseby_2100.jpg; IndiaMart_Graseby_2100_team_check.jpg",
+         "Medfusion 4000": "IndiaMart_Medfusion_4000_team_check.jpg; ICU_Global_Medfusion_4000.jpg",
+         "Graseby 1200": "Medikabazaar_Graseby_1200.jpg; IndiaMart_Graseby_1200_team_check.jpg; Graseby_1200_India_brochure_Hospimax_p2.jpg; ..._p3.jpg"}
 def shot(p):
     for k, v in shots.items():
         if p[0] == k or p[1].startswith(k): return v
@@ -312,13 +313,13 @@ urls = [
  ("Mindray", "eSP (PCA) data sheet", MR_ESP_DS, "Company data sheet (via distributor, S. Africa)", "ADDED (backup)", "'Communication: Wired/wireless'; drug library 5000 drugs"),
  ("Mindray", "2025 Annual Report summary (revenue, p.3 & p.9)", MR_AR_SUM, "Company annual report (SZSE / CNINFO)", "ADDED", "Official source; replaces news article"),
  ("Mindray", "BigGo Finance article (revenue)", "https://finance.biggo.com/news/Vmaddp0BOIb5XxavmPY-", "News aggregator", "DROP", "Unofficial; its segment table has unit errors (e.g., '122.41' for CNY 12.24B). Use annual report"),
- ("ICU Medical", "Medfusion 4000 (IndiaMart listing)", IM_MF, "Third-party (India distributor)", "KEEP (peach) - team to verify", "IndiaMart blocked for automated access here"),
+ ("ICU Medical", "Medfusion 4000 (IndiaMart listing)", IM_MF, "Third-party (India distributor)", "KEEP (peach) - team-verified", "Apex Medical India, Lucknow, Rs 1,80,000"),
  ("ICU Medical", "Medfusion 4000 Wireless (ICU global page)", ICU_MF, "Global website", "KEEP (backup)", "Feature proof only: drug library + wireless PharmGuard"),
- ("ICU Medical", "Graseby 2000 (IndiaMart listing)", IM_G2000, "Third-party (India distributor)", "ADDED (peach) - team to verify", "Sample had no URL for Graseby 2000/2100"),
+ ("ICU Medical", "Graseby 2000 (IndiaMart listing)", IM_G2000, "Third-party (India distributor)", "ADDED (peach) - team-verified", "Nature's Global Service, New Delhi, Rs 30,000. Sample had no URL for Graseby 2000/2100"),
  ("ICU Medical", "Graseby 2100 (Honmed, India)", HON_G2100, "Third-party (India distributor)", "ADDED (peach)", "Graseby 2000 range description; no drug library"),
- ("ICU Medical", "Graseby 2100 (IndiaMart listing)", IM_G2100, "Third-party (India distributor)", "ADDED (peach) - team to verify", ""),
- ("ICU Medical", "Graseby 1200 (IndiaMart listing)", IM_G1200, "Third-party (India distributor)", "KEEP (peach) - team to verify", "Tracking parameter removed"),
- ("ICU Medical", "Graseby 1200 (Medikabazaar)", MB_G1200, "Third-party (India distributor)", "KEEP (peach)", "Tracking parameters removed; page shows price, no drug library"),
+ ("ICU Medical", "Graseby 2100 (IndiaMart listing)", IM_G2100, "Third-party (India distributor)", "ADDED (peach) - team-verified", "Apex Medical India, Lucknow, Rs 30,000"),
+ ("ICU Medical", "Graseby 1200 (IndiaMart listing)", IM_G1200, "Third-party (India distributor)", "SUPPORTING ONLY (peach) - team-verified", "Horizon Medical Technologies, New Delhi, Rs 55,000. CAUTION: listing photo shows a Graseby 2000 syringe pump - show Medikabazaar to clients instead"),
+ ("ICU Medical", "Graseby 1200 (Medikabazaar)", MB_G1200, "Third-party (India distributor)", "KEEP (peach) - PRIMARY", "Tracking parameters removed; photo shows the 1200 volumetric pump; Rs 48,825"),
  ("ICU Medical", "Graseby 1200 India brochure (Hospimax)", G1200_BRO, "Third-party (India distributor)", "ADDED (peach)", "India brochure: RS232 only, no drug library"),
  ("ICU Medical", "Q4/FY2025 results release (revenue)", ICU_PR, "Company results release", "KEEP", "Total USD 2,231.3mn; Infusion Systems USD 684.2mn"),
  ("ICU Medical", "IR static file (FY2025)", "https://ir.icumed.com/static-files/d27738f3-0a46-4a32-8d61-0efc3a3852bc", "Company IR document", "DROP", "130-page document; the results release above is enough for the two figures"),
@@ -344,7 +345,7 @@ notes = [
  "Judgement call (Mindray 3 Series): data sheets show a drug-NAME library (up to 200 drugs) with no dose limits. Kept Standard, as in the sample; it moves to Smart if any drug library counts.",
  "Terumo TE-SS730 / TE-LM730 appear only in the India-hosted brochure (2018 edition); the India web page text mentions only the Smart (830) pumps.",
  "Graseby ownership flag: ICU Medical's FY2025 10-K describes Medfusion 4000 but does not mention Graseby, and graseby.com is now operated by Lianying Graseby Medical (Zhejiang, China). Indian listings still say 'Smiths Medical Graseby'. Confirm Graseby's current owner / India supplier before keeping it under ICU Medical.",
- "LIMITATION: IndiaMart blocks automated access from this environment (HTTP 429), and smiths-medical.com (incl. its /en-in pages) was unreachable. IndiaMart links need a manual check by the project team.",
+ "IndiaMart blocks automated access from this environment (HTTP 429); all four IndiaMart listings (Medfusion 4000, Graseby 2000, 2100, 1200) were verified manually by the project team (screenshots in evidence/). smiths-medical.com (incl. /en-in) was unreachable.",
  "Revenue: official sources only on the slide (Terumo FY results, Mindray SZSE annual report, ICU results release). USD uses ECB reference rates of 5-Oct-2026 (latest), crossed via EUR: USD/JPY 158.23, USD/CNY 6.705 - editable inputs on the Revenue tab. No company reports pump-only revenue; segment figures are the closest proxies.",
 ]
 ws5["A1"] = "Method, assumptions and caveats"; ws5["A1"].font = Font(name=F, bold=True, size=12)
