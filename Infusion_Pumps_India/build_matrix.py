@@ -144,14 +144,15 @@ P = [
   "https://arraymed.co.in/product/fresenius-kabi-agilia-vp/",
   "FK India Agilia range lists only SP, SP MC, SP TIVA: https://www.fresenius-kabi.com/in/products/ins/infusion-therapy/agilia-range",
   "Not shown", "ADD to Volumetric-Smart (peach - distributor only)", "Arraymed 'Download Brochure' button links to an unrelated Nihon Kohden defibrillator PDF - do not cite it."),
- ("Fresenius Kabi", "Agilia VP MC WiFi", "Volumetric",
-  "Yes (global) - FK data sheet: 'Up to 19 embedded drug libraries'.",
-  "Integrated WiFi on WiFi variant (global) - 'Wireless LAN (For Agilia VP MC WiFi only)'.",
-  "Connected (global only)", "Not verified in India",
-  "Pending - not on FK India site or Arraymed; IndiaMart search for team check: https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi",
-  "Global data sheet: https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf",
-  "Connected (Indian distributors' websites)", "PENDING team confirmation of IndiaMart/distributor listing; remove if none",
-  "IndiaMart blocks automated access (HTTP 429), so IndiaMart could not be checked. Manual check needed."),
+ ("Fresenius Kabi", "Agilia VP MC", "Volumetric",
+  "Yes - FK data sheet: 'Up to 19 embedded drug libraries'; 'Drug library to be created with Agilia Vigilant Drug'Lib'.",
+  "Optional - WiFi only on the separate Agilia VP MC WiFi variant (data sheet: 'Wireless LAN (For Agilia VP MC WiFi only)'). The WiFi variant was not found listed in India.",
+  "Smart**", "Third-party (India distributor)",
+  "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi (listing: 'Fresenius Kabi Agilia VP MC'; product-page URL to be added)",
+  "FK data sheet p.1-2: https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf" ,
+  "Connected - 'Agilia VP MC WiFi' (Indian distributors' websites)",
+  "RECLASSIFY: India listing is base Agilia VP MC -> Volumetric-Smart**; WiFi variant not listed in India -> FK Volumetric-Connected now blank",
+  "IndiaMart listing verified manually by project team (Oct-2026 screenshot); no price shown; seller not captured. Search for 'agilia vp mc wifi' returned no WiFi-variant listing."),
 ]
 
 wb = Workbook()
@@ -164,7 +165,7 @@ def hdr(ws, row, values, fill=NAVY):
 
 def legend(ws, row, col):
     items = [(BLUE, "Listed on official India website"), (PEACH, "Listed on Indian distributor (third-party) website only"),
-             (GREY, "Not disclosed on Indian websites"), (RED, "Pending confirmation of an Indian distributor listing")]
+             (GREY, "Not disclosed on Indian websites"), (RED, "Pending confirmation of an Indian listing (none open)")]
     for i, (fill, txt) in enumerate(items):
         ws.cell(row=row + i, column=col).fill = fill
         ws.cell(row=row + i, column=col).border = BOX
@@ -188,7 +189,7 @@ companies = [
  ("B. Braun", "Germany", "EUR 9.40B FY25 group sales (~USD 10.53B*)\nof which Hospital Care div. (incl. infusion therapy): EUR 5.09B\nSource: B. Braun Annual Report 2025",
   "- Standard columns were blank: add Perfusor compact, compact S, Infusomat fmS, Infusomat P\n- compactplus & Space pumps -> Smart** (connectivity is optional)\n- 'Perfusor Space Plus' removed: not offered in India (catalogue + distributors)\n- 'Infusomat Space' -> India lists Infusomat Space P\n- 'Infusomat Space Place' typo -> Spaceplus Infusomat\n- Add Infusomat compactplus P"),
  ("Fresenius Kabi", "Germany", "EUR 8.61B FY25 Kabi revenue (~USD 9.65B*)\nof which MedTech (incl. infusion pumps): EUR 1.61B\nSource: Fresenius Annual Report 2025",
-  "- Add Agilia SP (Smart), Agilia SP MC & SP TIVA (Smart**)\n- Agilia VP (distributor only) -> Volumetric Smart, peach\n- Agilia VP MC WiFi: pending distributor confirmation (keep only if an Indian listing is found)\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
+  "- Add Agilia SP (Smart), Agilia SP MC & SP TIVA (Smart**)\n- Agilia VP (distributor only) -> Volumetric Smart, peach\n- 'Agilia VP MC WiFi' -> India listing (IndiaMart) is base Agilia VP MC -> Volumetric Smart** (peach); Volumetric Connected now blank\n- Infusia SP7s/VP7s & Agilia SP MC WiFi confirmed"),
 ]
 r = 6
 for name, hq, rev, changes in companies:
@@ -243,7 +244,7 @@ shots = {"Perfusor compact": "BBraun_IN_Perfusor_compact.jpg", "Perfusor compact
          "Infusia SP7s (SP7sED3)": "FK_IN_Infusia_SP7s.jpg", "Agilia SP": "FK_IN_Agilia_SP.jpg; Arraymed_Agilia_SP.jpg",
          "Agilia SP MC": "FK_IN_Agilia_SP_MC.jpg; Arraymed_Agilia_SP_MC.jpg", "Agilia SP MC WiFi": "FK_IN_Agilia_SP_MC.jpg",
          "Agilia SP TIVA": "FK_IN_Agilia_SP_TIVA.jpg; Arraymed_Agilia_SP_TIVA.jpg", "Infusia VP7s (VP7sED3)": "FK_IN_Infusia_VP7s.jpg",
-         "Agilia VP": "Arraymed_Agilia_VP.jpg; FK_IN_Agilia_range.jpg", "Agilia VP MC WiFi": "FK_IN_Agilia_range.jpg (absence)"}
+         "Agilia VP": "Arraymed_Agilia_VP.jpg; FK_IN_Agilia_range.jpg", "Agilia VP MC": "IndiaMart_search_Agilia_VP_MC_team_check.jpg"}
 for i, p in enumerate(P, 2):
     row = list(p) + [shots.get(p[1], "")]
     for c, v in enumerate(row, 1):
@@ -335,6 +336,8 @@ urls = [
  ("Fresenius Kabi", "India entity financials", "https://www.tofler.in/fresenius-kabi-india-private-limited/company/U24231PN1995PTC014017", "Third-party data aggregator", "ADDED", "Revenue range only"),
  ("Fresenius Kabi", "GB product literature library", "https://www.fresenius-kabi.com/gb/healthcare-professional-area/medtech/product-literature-library", "Global website (GB HCP area)", "DROP", "GB HCP-only area; use the direct data-sheet PDF instead"),
  ("Fresenius Kabi", "Key2 Declaration of Conformity", "https://key2.fresenius-kabi.com/en/regulatory-document/declaration-conformity/mdr/declaration-conformity", "Regulatory document (EU)", "DROP", "EU regulatory document - proves variants exist (SP, SP MC, SP MC WiFi, SP TIVA WiFi) but not India availability"),
+ ("Fresenius Kabi", "Agilia VP MC (IndiaMart search; team-verified listing)", "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi", "Third-party (India distributor)", "ADDED (peach)", "Replace with the product-page URL of the 'Fresenius Kabi Agilia VP MC' listing"),
+ ("Fresenius Kabi", "Agilia VP MC / VP MC WiFi data sheet", "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf", "Company brochure (global)", "ADDED (backup)", "'Wireless LAN (For Agilia VP MC WiFi only)'; 19 drug libraries"),
  ("BD / Baxter", "All BD and Baxter URLs", "-", "-", "OUT OF SCOPE", "Skipped per instruction"),
 ]
 for i, u in enumerate(urls, 2):
@@ -357,7 +360,7 @@ notes = [
  "Visual check: every India page was opened in a real browser and screenshotted (see evidence/ folder). B. Braun catalogue details sit under 'Read more' / 'Overview & Texts' - click there to see drug-library text.",
  "Classification rules applied: an add-on connectivity module (e.g., Data module compactplus) or a separate WiFi variant (e.g., Agilia SP MC vs SP MC WiFi) = 'connectivity optional' = Smart**. A basic RS232 / nurse-call port is NOT counted as connectivity.",
  "Where a product page is silent on the drug library (e.g., FK Agilia SP, SP TIVA), distributor text was used and the evidence column says so.",
- "LIMITATION: IndiaMart blocks automated access from this environment (HTTP 429). IndiaMart checks were done manually by the project team; Agilia VP MC WiFi is pending that check.",
+ "LIMITATION: IndiaMart blocks automated access from this environment (HTTP 429). IndiaMart checks were done manually by the project team (screenshot in evidence/).",
  "LIMITATION: Revenue for the India entities is shown only as ranges (Tofler/Tracxn); exact MCA figures are paywalled. Neither group reports infusion-pump-only revenue; Hospital Care (B. Braun) and MedTech (Fresenius Kabi) are the closest disclosed proxies.",
  "Revenue in USD uses the latest ECB EUR/USD reference rate 1.1204 (5-Oct-2026) - an editable input on the Revenue tab. Slide shows official (annual report) figures only; India-entity ranges come from aggregators (Tofler/Tracxn) and are kept off the slide. Official India figures would need MCA filings (paid access).",
 ]

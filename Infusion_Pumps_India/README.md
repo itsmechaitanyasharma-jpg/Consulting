@@ -9,4 +9,4 @@
 - `evidence/`: screenshots of each India product page, captured October 2026
 - `build_matrix.py`: script that regenerates the workbook
 
-Colour legend: blue = official India website · peach = Indian distributor only (incl. IndiaMart) · grey = not disclosed · red = pending distributor confirmation.
+Colour legend: blue = official India website · peach = Indian distributor only (incl. IndiaMart) · grey = not disclosed.
