@@ -148,7 +148,7 @@ P = [
   "Yes - FK data sheet: 'Up to 19 embedded drug libraries'; 'Drug library to be created with Agilia Vigilant Drug'Lib'.",
   "Optional - WiFi only on the separate Agilia VP MC WiFi variant (data sheet: 'Wireless LAN (For Agilia VP MC WiFi only)'). The WiFi variant was not found listed in India.",
   "Smart**", "Third-party (India distributor)",
-  "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi (listing: 'Fresenius Kabi Agilia VP MC'; product-page URL to be added)",
+  "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi&cq=New-Delhi (listing: 'Fresenius Kabi Agilia VP MC'; product-page URL to be added)",
   "FK data sheet p.1-2: https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf" ,
   "Connected - 'Agilia VP MC WiFi' (Indian distributors' websites)",
   "RECLASSIFY: India listing is base Agilia VP MC -> Volumetric-Smart**; WiFi variant not listed in India -> FK Volumetric-Connected now blank",
@@ -336,7 +336,7 @@ urls = [
  ("Fresenius Kabi", "India entity financials", "https://www.tofler.in/fresenius-kabi-india-private-limited/company/U24231PN1995PTC014017", "Third-party data aggregator", "ADDED", "Revenue range only"),
  ("Fresenius Kabi", "GB product literature library", "https://www.fresenius-kabi.com/gb/healthcare-professional-area/medtech/product-literature-library", "Global website (GB HCP area)", "DROP", "GB HCP-only area; use the direct data-sheet PDF instead"),
  ("Fresenius Kabi", "Key2 Declaration of Conformity", "https://key2.fresenius-kabi.com/en/regulatory-document/declaration-conformity/mdr/declaration-conformity", "Regulatory document (EU)", "DROP", "EU regulatory document - proves variants exist (SP, SP MC, SP MC WiFi, SP TIVA WiFi) but not India availability"),
- ("Fresenius Kabi", "Agilia VP MC (IndiaMart search; team-verified listing)", "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi", "Third-party (India distributor)", "ADDED (peach)", "Replace with the product-page URL of the 'Fresenius Kabi Agilia VP MC' listing"),
+ ("Fresenius Kabi", "Agilia VP MC (IndiaMart search; team-verified listing)", "https://dir.indiamart.com/search.mp?ss=agilia+vp+mc+wifi&cq=New-Delhi", "Third-party (India distributor)", "ADDED (peach)", "Replace with the product-page URL of the 'Fresenius Kabi Agilia VP MC' listing"),
  ("Fresenius Kabi", "Agilia VP MC / VP MC WiFi data sheet", "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/gb/products/product-documents/medtech/agilia-connect-vp/IFT264%20Agilia%20VPMC%20Connect%20Data%20Sheet.pdf.coredownload.inline.pdf", "Company brochure (global)", "ADDED (backup)", "'Wireless LAN (For Agilia VP MC WiFi only)'; 19 drug libraries"),
  ("BD / Baxter", "All BD and Baxter URLs", "-", "-", "OUT OF SCOPE", "Skipped per instruction"),
 ]
